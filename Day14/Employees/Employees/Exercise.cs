@@ -65,7 +65,7 @@ namespace OOPSLearning
             e1.setId(22);
             e1.getId();
             e1.Name = "Shashank";
-            e1.Department = "Consulting";
+            e1.Department = "IT";
             e1.Salary = 60000;
             e1.Display();
         }
