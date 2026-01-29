@@ -1,0 +1,49 @@
+static int Gcd(int first, int second)
+{
+    if (second == 0)
+        return first;
+
+    return Gcd(second, first % second);
+}
+
+static int Lcm(int first, int second)
+{
+    return (first / Gcd(first, second)) * second;
+}
+
+public static int getTotalX(List<int> factors, List<int> multiples)
+{
+    int gcdOfMultiples = -1;
+
+    foreach (var value in multiples)
+    {
+        if (gcdOfMultiples == -1)
+            gcdOfMultiples = value;
+        else
+            gcdOfMultiples = Gcd(gcdOfMultiples, value);
+    }
+
+    int lcmOfFactors = -1;
+
+    foreach (var value in factors)
+    {
+        if (lcmOfFactors == -1)
+            lcmOfFactors = value;
+        else
+            lcmOfFactors = Lcm(lcmOfFactors, value);
+    }
+
+    int current = lcmOfFactors;
+    int step = lcmOfFactors;
+    int count = 0;
+
+    while (current <= gcdOfMultiples)
+    {
+        if (gcdOfMultiples % current == 0)
+            count++;
+
+        current += step;
+    }
+
+    return count;
+}
