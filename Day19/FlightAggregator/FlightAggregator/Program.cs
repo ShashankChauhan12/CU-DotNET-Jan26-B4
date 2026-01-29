@@ -23,16 +23,16 @@ namespace FlightAggregator
 
     class DurationComparer : IComparer<Flight>
     {
-        public int Compare(Flight x, Flight y)
+        public int Compare(Flight? x, Flight? y)
         {
-            return x.Duration.CompareTo(y.Duration);
+            return x.Duration.CompareTo(y?.Duration);
         }
     }
     class DepartureComparer : IComparer<Flight>
     {
-        public int Compare(Flight x, Flight y)
+        public int Compare(Flight? x, Flight? y)
         {
-            return x.DepartureTime.CompareTo(y.DepartureTime);
+            return x.DepartureTime.CompareTo(y?.DepartureTime);
 
         }
     }
@@ -97,7 +97,3 @@ namespace FlightAggregator
     }
 }
 
-//public void Display()
-//{
-//    Console.WriteLine($"{LaptopId} {Company} {ModelName} {Price}");
-//}
