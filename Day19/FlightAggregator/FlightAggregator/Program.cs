@@ -25,7 +25,7 @@ namespace FlightAggregator
     {
         public int Compare(Flight? x, Flight? y)
         {
-            return x.Duration.CompareTo(y?.Duration);
+            return x.Duration.CompareTo(y.Duration);
         }
     }
     class DepartureComparer : IComparer<Flight>
