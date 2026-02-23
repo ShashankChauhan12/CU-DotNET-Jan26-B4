@@ -53,7 +53,6 @@
                 throw new InsecurePackagingException("Fragile items must be reinforced");
 
             Console.WriteLine($"Express shipment: {TrackingID}");
-
         }
     }
 
@@ -102,7 +101,6 @@
         }
     }
 
-
     internal class Program
     {
         static void Main(string[] args)
@@ -114,7 +112,7 @@
             {
                 new ExpressShipment("ABCD1267",400.00,"Australia",true, true),
                 new HeavyFreight("ECOR0098",1200.54,"Russia",true, true,false),
-                new ExpressShipment("TEWM5643",66,"Unknown Island",false, false),
+                new ExpressShipment("TEWM5643",66,"Nepal",false, false),
                 new HeavyFreight("TUEM9010",1549.00,"Finland",true,true,true),
 
             };

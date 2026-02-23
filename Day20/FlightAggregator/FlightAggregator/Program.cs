@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace FlightAggregator
 {
-    class Flight: IComparable<Flight>
+    class Flight : IComparable<Flight>
     {
         public string FlightNumber { get; set; }
         public decimal Price { get; set; }
@@ -88,11 +88,6 @@ namespace FlightAggregator
             {
                 Console.WriteLine(item);
             }
-
-
-
-
-
         }
     }
 }
