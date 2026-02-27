@@ -25,7 +25,7 @@ namespace EmployeeDirectory
 
 
             string emp2 = (string)employeeTable[102];
-            Console.WriteLine($"Name of employee 102 is is: {emp2}");
+            Console.WriteLine($"Name of employee 102 is: {emp2}");
 
             foreach (DictionaryEntry entry in employeeTable)
             {

@@ -4,7 +4,6 @@
     {
         public InvalidStudentNameException(string message) : base(message)
         {
-
         }
     }
     class InvalidStudentAgeException : Exception
@@ -14,112 +13,137 @@
 
     internal class Program
     {
-        static void checkName()
-        {
-            while (true)
-            {
-                try
-                {
-                    Console.Write("Enter the name: ");
-                    string name = Console.ReadLine();
-                    for (int i = 0; i < name.Length; i++)
-                    {
-                        if (!char.IsLetter(name[i]))
-                        {
-                            throw new InvalidStudentNameException("The name should contain all the letters.");
-                        }
-                    }
-                    Console.WriteLine("You have entered the correct name. Thank you");
-                    break;
-                }
-                catch (InvalidStudentNameException e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-            }
-        }
-        static void CheckAge()
-        {
-
-            while (true)
-            {
-                try
-                {
-                    Console.Write("Enter the age: ");
-                    int age = int.Parse(Console.ReadLine());
-                    if (age < 18 || age > 60)
-                    {
-                        throw new InvalidStudentAgeException("Age should be between 18 and 60");
-                    }
-                    Console.WriteLine("You have entered the correct age.");
-                    break;
-                }
-
-                catch (InvalidStudentAgeException e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-            }
-        }
-
-        static void Div()
-        {
-            try
-            {
-                Console.Write("Enter the first number: ");
-                int num1 = int.Parse(Console.ReadLine());
-                Console.Write("Enter the second number: ");
-                int num2 = int.Parse(Console.ReadLine());
-                int div = num1 / num2;
-            }
-            catch (FormatException f)
-            {
-                Console.WriteLine(f.Message);
-            }
-            catch (DivideByZeroException e)
-            {
-                Console.WriteLine(e.Message);
-            }
-        }
-
-        static void CheckArr()
-        {
-            try
-            {
-                int[] arr = new int[5];
-                Console.Write("Enter the elements of array: ");
-                for (int i = 0; i < arr.Length; i++)
-                {
-                    arr[i] = int.Parse(Console.ReadLine());
-                }
-               // Console.WriteLine(arr[10]);
-            }
-            catch (IndexOutOfRangeException i)
-            {
-                Console.WriteLine(i.Message);
-                throw new Exception();
-            }
-        }
         static void Main(string[] args)
         {
             try
             {
-                checkName();
-                CheckAge();
-                Div();
-                CheckArr();
-            }
+                Console.WriteLine("Enter first number: ");
+                int a = int.Parse(Console.ReadLine());
 
-            catch (Exception e)
+                Console.WriteLine("Enter second number: ");
+                int b = int.Parse(Console.ReadLine());
+
+                int result = a / b;
+                Console.WriteLine("Result: " + result);
+            }
+            catch (DivideByZeroException)
             {
-                Console.WriteLine("Message : " + e.Message);
-                Console.WriteLine("InnerException : " + e.InnerException);
-                Console.WriteLine("StackTrace : " + e.StackTrace);
+                Console.WriteLine("Number can't be divide by 0");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid number format.");
             }
             finally
             {
                 Console.WriteLine("Operation Completed");
             }
+
+            try
+            {
+                Console.WriteLine("Enter a number: ");
+                int num = int.Parse(Console.ReadLine());
+                Console.WriteLine($"You entered: {num}");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid number format.");
+            }
+            finally
+            {
+                Console.WriteLine("Operation Completed");
+            }
+
+            try
+            {
+                int[] arr = { 10, 20, 30 };
+                Console.Write("Enter array index (0-2): ");
+                int index = int.Parse(Console.ReadLine());
+                Console.WriteLine($"Value: {arr[index]}");
+            }
+            catch (IndexOutOfRangeException)
+            {
+                Console.WriteLine("Error: Index out of range.");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid number format.");
+            }
+            finally
+            {
+                Console.WriteLine("Operation Completed");
+            }
+
+            try
+            {
+                string studentName = GetStudentName();
+                int studentAge = GetStudentAge();
+
+                Console.WriteLine("\nStudent Enrolled Successfully!");
+                Console.WriteLine($"Name: {studentName}, Age: {studentAge}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\nMessage: " + ex.Message);
+
+                if (ex.InnerException != null)
+                    Console.WriteLine("Inner Exception: " + ex.InnerException.Message);
+
+                Console.WriteLine("\nStackTrace:");
+                Console.WriteLine(ex.StackTrace);
+            }
+        }
+
+        static int GetStudentAge()
+        {
+            while (true)
+            {
+                try
+                {
+                    Console.Write("Enter Student Age: ");
+                    int age = int.Parse(Console.ReadLine());
+
+                    if (age < 18 || age > 60)
+                        throw new InvalidStudentAgeException("Age must be between 18 and 60.");
+
+                    return age;
+                }
+                catch (InvalidStudentAgeException ex)
+                {
+                    throw new Exception("Student Age Validation Failed", ex);
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Please enter a valid number.");
+                }
+            }
+        }
+
+        static string GetStudentName()
+        {
+            while (true)
+            {
+                try
+                {
+                    Console.Write("Enter Student Name: ");
+                    string name = Console.ReadLine();
+
+                    if (string.IsNullOrWhiteSpace(name))
+                        throw new InvalidStudentNameException("Student name cannot be empty.");
+
+                    return name;
+                }
+                catch (InvalidStudentNameException ex)
+                {
+                    throw new Exception("Student Name Validation Failed", ex);
+                }
+            }
         }
     }
 }
+
+
+
+
+
+
