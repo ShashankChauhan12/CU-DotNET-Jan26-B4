@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="GreetingLibrary/GreetingLibrary.csproj" Id="8a546871-d239-49be-b229-a4107dc0de42" />
+  <Project Path="Shared Greeting Library/Shared Greeting Library.csproj" />
+</Solution>
