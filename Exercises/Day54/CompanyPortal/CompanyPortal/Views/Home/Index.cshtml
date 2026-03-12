@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<!-- Hero / Jumbotron Section -->
+<div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">Welcome to Company Portal</h1>
+        <p class="col-md-8 fs-4">
+            We provide professional IT consulting, training, and software solutions for businesses.
+        </p>
+        <a asp-controller="Services" asp-action="Index" class="btn btn-primary btn-lg">
+            Explore Services
+        </a>
+    </div>
+</div>
+
+<!-- Cards Section -->
+<div class="row">
+
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Consulting</h5>
+                <p class="card-text">
+                    Expert consulting services to help businesses grow with technology.
+                </p>
+                <a asp-controller="Services" asp-action="Consulting" class="btn btn-outline-primary">
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Training</h5>
+                <p class="card-text">
+                    Professional training programs for developers and IT professionals.
+                </p>
+                <a asp-controller="Services" asp-action="Training" class="btn btn-outline-primary">
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Software Products</h5>
+                <p class="card-text">
+                    Modern enterprise software tools to improve productivity.
+                </p>
+                <a asp-controller="Products" asp-action="Software" class="btn btn-outline-primary">
+                    View Products
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
