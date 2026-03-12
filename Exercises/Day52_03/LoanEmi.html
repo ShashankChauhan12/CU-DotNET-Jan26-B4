@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function show(){
+            let p = parseFloat(prompt("Enter the principal Amount"));
+            let r = parseFloat(prompt("enter the rate of interest"))/12/100;
+            let n = parseInt(prompt("Enter Number of Months"));
+            let emi = p * r * Math.pow((1+r), n) / (Math.pow((1+r), n) - 1);
+
+            let balance = p;
+            let tbody = document.getElementById("scheduleBody");
+
+            for(let i =1; i<=n;i++){
+                let interest = balance * r;
+                let principal = emi - interest;
+                let remaining = balance - principal;
+
+                let row = `
+                <tr>
+                    <td>${i}</td>
+                    <td>${balance.toFixed(2)}</td>
+                    <td>${emi.toFixed(2)}</td>
+                    <td>${principal.toFixed(2)}</td>
+                    <td>${interest.toFixed(2)}</td>
+                    <td>${remaining.toFixed(2)}</td>
+                </tr>`;
+
+                tbody.innerHTML+=row;
+                balance=remaining;
+            }
+      }
+    </script>
+</head>
+<body onload="show()">
+    <table border="1">
+    <thead>
+        <tr>
+            <th>SNO</th>
+            <th>Loan Left</th>
+            <th>EMI</th>
+            <th>Principal</th>
+            <th>Interest</th>
+            <th>Remaining Balance</th>
+        </tr>
+    </thead>
+
+    <tbody id="scheduleBody">
+    </tbody>
+</table>
+</body>
+</html>

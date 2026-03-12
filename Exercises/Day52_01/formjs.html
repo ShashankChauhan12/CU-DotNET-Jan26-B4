@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Account Opening Form</title>
+    <script>
+        
+        function showUserDetails(){
+            let selectTitle = "";
+            let select = document.getElementsByName('select');
+            for(let i =0; i<select.length;i++){
+                if(select[i].checked){
+                    selectTitle = select[i].value;
+                }
+            }
+
+            let g='';
+            let gender = document.getElementsByName('gender');
+            for(let i =0; i<gender.length;i++){
+                if(gender[i].checked){
+                    g = gender[i].value;
+                }
+            }
+
+            let accountType='';
+            let accounts = document.getElementById('account');
+            accountType=accounts.value;
+
+            let name = document.getElementById('name').value;
+            let age = document.getElementById('age').value;
+            let mobile = document.getElementById('mobile').value;
+            let email = document.getElementById('email').value;
+            console.log(selectTitle+" "+name+" "+age+" "+g+" "+mobile+" "+email+" "+accountType);
+        }
+
+    </script>
+</head>
+<body>
+    <Form onsubmit="showUserDetails(); return false">
+        <table>
+            <tr>
+                <td>
+                    <label>Select</label>
+                    <input type="radio" name="select" id="Mr" value="mr"><label>Mr.</label>
+                    <input type="radio" name="select" id="Mrs" value="mrs" ><label>Mrs</label>
+                    <input type="radio" name="select" id="other" value="other" ><label>Other</label>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Enter your Name</label>
+                    <input type="text" placeholder="Enter your name" name="name" id="name" >
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Age</label>
+                    <input type="number" name="age" id="age" style="width: 50px;" >
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    <label>Mobile Number</label>
+                    <input type="number" name="mobile" id="mobile" pattern="^[0-9]{10}$" placeholder="0123456789" >
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Enter you DOB</label>
+                    <input type="date" name="dob" id="dob" max="2026-12-31" >
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Email</label>
+                    <input type="email" name="email" id="email" placeholder="someone@gmail.com" >
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Enter Pancard Number</label>
+                    <input type="text" pattern="^[A-Z]{5}[0-9]{4}[A-Z]{1}$"
+                    placeholder="ABCDE0123Z" >
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Gender</label>
+                    <input type="radio" name="gender" id="M" 
+                    value="Male"><label>Male</label>
+                    <input type="radio" name="gender" id="F" value="Female" ><label>Female</label>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Account Type</label>
+                    <select id="account" name="account" >
+                        <option value="">select</option>
+                        <option value="1">Savings</option>
+                        <option value="2">Current</option>
+                        <option value="3">Fixed Deposit</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="checkbox" name="confirm" id="confirm"><label>I confirm that details provided by me are correct.</label>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    
+                    <input type="submit">
+                    <input type="reset">
+                </td>
+            </tr>
+        </table>
+    </Form>
+</body>
+</html>

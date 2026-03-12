@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sum of Two Numbers</title>
+
+<style>
+.num{
+    width:200px;
+    height:30px;
+    font-size:16px;
+}
+
+.result{
+    width:200px;
+    height:30px;
+    font-size:16px;
+    background-color:orange;
+}
+</style>
+
+<script>
+
+function checkInput(box){
+    
+    if(box.value==""){
+        box.style.backgroundColor="red";
+        return false;
+    }
+
+    if(isNaN(box.value)){
+        box.style.backgroundColor="yellow";
+        return false;
+    }
+
+    box.style.backgroundColor="white";
+    return true;
+}
+
+function calc(){
+
+    var n1=document.getElementById("n1");
+    var n2=document.getElementById("n2");
+    var res=document.getElementById("res");
+
+    var v1=checkInput(n1);
+    var v2=checkInput(n2);
+
+    if(v1 && v2){
+        res.value = Number(n1.value) + Number(n2.value);
+        res.style.backgroundColor="white";
+    }
+    else{
+        res.value="Error";
+    }
+}
+
+</script>
+</head>
+
+<body>
+
+<input type="text" id="n1" class="num" onblur="calc()">
+
++
+
+<input type="text" id="n2" class="num" onblur="calc()">
+
+=
+
+<input type="text" id="res" class="result" readonly>
+
+</body>
+</html>
