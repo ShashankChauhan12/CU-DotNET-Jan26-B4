@@ -1,0 +1,117 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<style>
+    .login-background {
+        background: linear-gradient(135deg, #f8fafc 0%, #e9f0ff 50%, #eef9f8 100%);
+    }
+    .login-card {
+        border: 0;
+    }
+    .login-brand {
+        font-weight: 700;
+        letter-spacing: 0.3px;
+    }
+    .social-btn {
+        min-width: 160px;
+    }
+</style>
+
+<div class="container-fluid login-background min-vh-100 d-flex align-items-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-xl-6">
+                <div class="card login-card shadow-lg rounded-4 overflow-hidden">
+                    <div class="row g-0">
+                        <div class="col-md-5 d-none d-md-flex bg-primary text-white align-items-center justify-content-center p-4" style="background: linear-gradient(180deg,#3b82f6,#60a5fa);">
+                                <div class="text-center">
+                                    <picture>
+                                        <source srcset="~/images/car-photo.jpg" type="image/jpeg">
+                                        <img src="~/images/car.svg" alt="Car illustration" width="220" height="110" class="img-fluid rounded" />
+                                    </picture>
+                                    <h3 class="mt-3 mb-1">Welcome back</h3>
+                                    <p class="small mb-0">Sign in to manage your cars and view your dashboard.</p>
+                                </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="card-body p-4 p-md-5">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="me-auto">
+                                        <h1 class="h4 mb-0">@ViewData["Title"]</h1>
+                                        <div class="text-muted small">Use your account to continue</div>
+                                    </div>
+                                    <div class="login-brand text-primary">CarManager</div>
+                                </div>
+
+                                <form id="account" method="post" novalidate>
+                                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+
+                                    <div class="form-floating mb-3">
+                                        <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" autofocus />
+                                        <label asp-for="Input.Email">Email</label>
+                                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-floating mb-3">
+                                        <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
+                                        <label asp-for="Input.Password">Password</label>
+                                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="mb-3 d-flex justify-content-between align-items-center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" asp-for="Input.RememberMe" />
+                                            <label class="form-check-label" asp-for="Input.RememberMe">@Html.DisplayNameFor(m => m.Input.RememberMe)</label>
+                                        </div>
+                                        <a id="forgot-password" asp-page="./ForgotPassword" class="small">Forgot password?</a>
+                                    </div>
+
+                                    <div class="d-grid mb-3">
+                                        <button id="login-submit" type="submit" class="btn btn-primary btn-lg">Log in</button>
+                                    </div>
+
+                                    <div class="text-center mb-2">
+                                        <small class="text-muted">Don’t have an account? <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register</a></small>
+                                    </div>
+                                </form>
+
+                                <hr />
+
+                                @* <div class="text-center">
+                                    <h6 class="mb-3">Or sign in with</h6>
+                                    @{
+                                        if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                                        {
+                                            <div class="small text-muted">There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article</a> about setting up external logins.</div>
+                                        }
+                                        else
+                                        {
+                                            <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="d-flex flex-wrap justify-content-center gap-2">
+                                                @foreach (var provider in Model.ExternalLogins!)
+                                                {
+                                                    <button type="submit" class="btn btn-outline-secondary social-btn" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                                }
+                                            </form>
+                                        }
+                                    }
+                                </div> *@
+
+                                <div class="mt-3 text-center small">
+                                    <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

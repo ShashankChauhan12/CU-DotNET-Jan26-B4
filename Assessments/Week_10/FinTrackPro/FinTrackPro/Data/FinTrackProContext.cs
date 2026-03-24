@@ -15,5 +15,6 @@ namespace FinTrackPro.Data
         }
 
         public DbSet<FinTrackPro.Models.Account> Account { get; set; } = default!;
+        public DbSet<FinTrackPro.Models.Transaction> Transactions{ get; set; }
     }
 }

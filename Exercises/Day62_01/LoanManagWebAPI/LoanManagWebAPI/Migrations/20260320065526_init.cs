@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace FinTrackPro.Migrations
+namespace LoanManagWebAPI.Migrations
 {
     /// <inheritdoc />
     public partial class init : Migration
@@ -11,17 +11,19 @@ namespace FinTrackPro.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Account",
+                name: "Loan",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Balance = table.Column<double>(type: "float", nullable: false)
+                    BorrowerName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    LoanTermMonths = table.Column<int>(type: "int", nullable: false),
+                    IsApproved = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Account", x => x.ID);
+                    table.PrimaryKey("PK_Loan", x => x.Id);
                 });
         }
 
@@ -29,7 +31,7 @@ namespace FinTrackPro.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Account");
+                name: "Loan");
         }
     }
 }

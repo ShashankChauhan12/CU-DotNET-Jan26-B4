@@ -1,0 +1,69 @@
+﻿@model InvestmentCreateViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Investment</h4>
+<hr />
+
+<form asp-action="Create" method="post">
+
+    <div class="form-group">
+        <label asp-for="TickerSymbol"></label>
+        <input asp-for="TickerSymbol" class="form-control" />
+        <span asp-validation-for="TickerSymbol" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="AssetName"></label>
+        <input asp-for="AssetName" class="form-control" />
+        <span asp-validation-for="AssetName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Price"></label>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Quantity"></label>
+        <input asp-for="Quantity" class="form-control" />
+        <span asp-validation-for="Quantity" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Total Investment Value</label>
+        <input id="TotalValue" value="@Model?.TotalValue" class="form-control" readonly />
+    </div>
+
+    <br />
+
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+
+</form>
+
+<script>
+    function calculateTotal() {
+        let price = parseFloat(document.getElementById("Price").value) || 0;
+        let quantity = parseInt(document.getElementById("Quantity").value) || 0;
+
+        let total = price * quantity;
+
+        document.getElementById("TotalValue").value =
+            total.toLocaleString('en-IN', { style: 'currency', currency: 'INR' });
+    }
+
+    document.getElementById("Price").addEventListener("input", calculateTotal);
+    document.getElementById("Quantity").addEventListener("input", calculateTotal);
+</script>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
