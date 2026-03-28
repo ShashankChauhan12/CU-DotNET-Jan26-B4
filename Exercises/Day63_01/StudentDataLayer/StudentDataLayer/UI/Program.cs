@@ -16,7 +16,6 @@ namespace StudentDataLayer.UI
 
             IStudentRepository repository;
 
-            // 🔥 Decision ONLY here (Correct Design)
             if (choice == "1")
                 repository = new ListStudentRepository();
             else

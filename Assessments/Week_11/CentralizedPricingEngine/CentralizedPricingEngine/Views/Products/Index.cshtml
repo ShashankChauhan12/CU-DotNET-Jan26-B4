@@ -1,0 +1,99 @@
+﻿@{
+    ViewBag.Title = "Products";
+}
+
+<h2>GlobalMart — Products</h2>
+
+<form method="post" action="/Products/Checkout">
+
+    <table border="1" cellpadding="8" id="productsTable">
+        <thead>
+            <tr>
+                <th>Select</th>
+                <th>Product</th>
+                <th>Base Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in ViewBag.Products)
+            {
+                <tr>
+                    <td>
+                        <input type="checkbox"
+                               class="product-check"
+                               name="selectedNames"
+                               value="@product["Name"]"
+                               data-price="@product["BasePrice"]" />
+                    </td>
+                    <td>@product["Name"]</td>
+                    <td>$@product["BasePrice"]</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <br />
+
+    <!-- Promo Code Dropdown -->
+    <label>Select Promo Code:</label>
+    <select name="promoCode" id="promoCode">
+        <option value="">-- No Promo --</option>
+        <option value="WINTER25">WINTER25 — 15% Off</option>
+        <option value="FREESHIP">FREESHIP — $5.00 Off</option>
+    </select>
+
+    <br /><br />
+
+    <!-- ✅ Summary Box — updates automatically -->
+    <table border="1" cellpadding="8" style="width:300px;">
+        <tr>
+            <td><strong>Subtotal</strong></td>
+            <td><strong>$<span id="subtotal">0.00</span></strong></td>
+        </tr>
+        <tr>
+            <td><strong>Discount</strong></td>
+            <td><strong>- $<span id="discount">0.00</span></strong></td>
+        </tr>
+        <tr>
+            <td><strong>Total</strong></td>
+            <td><strong>$<span id="total">0.00</span></strong></td>
+        </tr>
+    </table>
+
+    <br />
+    <button type="submit">Proceed to Checkout →</button>
+
+</form>
+
+<!-- ✅ JavaScript — calculates total automatically on checkbox/promo change -->
+<script>
+    // Promo rules — must match PricingService logic exactly
+    function applyPromo(subtotal, promoCode) {
+        if (promoCode === "WINTER25") return subtotal * 0.85;
+        if (promoCode === "FREESHIP") return Math.max(0, subtotal - 5.00);
+        return subtotal;
+    }
+
+    function recalculate() {
+        // Sum base prices of checked products
+        let subtotal = 0;
+        document.querySelectorAll(".product-check:checked").forEach(cb => {
+            subtotal += parseFloat(cb.dataset.price);
+        });
+
+        const promoCode = document.getElementById("promoCode").value;
+        const total     = applyPromo(subtotal, promoCode);
+        const discount  = subtotal - total;
+
+        // Update the summary box
+        document.getElementById("subtotal").textContent = subtotal.toFixed(2);
+        document.getElementById("discount").textContent = discount.toFixed(2);
+        document.getElementById("total").textContent    = total.toFixed(2);
+    }
+
+    // Trigger on any checkbox or promo change
+    document.querySelectorAll(".product-check").forEach(cb => {
+        cb.addEventListener("change", recalculate);
+    });
+    document.getElementById("promoCode").addEventListener("change", recalculate);
+</script>

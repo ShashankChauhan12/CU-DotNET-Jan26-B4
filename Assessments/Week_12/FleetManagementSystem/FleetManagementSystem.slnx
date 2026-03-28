@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="LogiTrack.Identity/LogiTrack.Identity.csproj" />
+  <Project Path="LogiTrack.Tracking/LogiTrack.Tracking.csproj" />
+</Solution>

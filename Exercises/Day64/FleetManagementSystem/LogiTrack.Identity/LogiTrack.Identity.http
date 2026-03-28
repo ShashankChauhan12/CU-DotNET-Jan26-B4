@@ -1,0 +1,6 @@
+@LogiTrack.Identity_HostAddress = http://localhost:5022
+
+GET {{LogiTrack.Identity_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
