@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/Backend/">
+    <Project Path="Travel.API/Travel.API.csproj" />
+  </Folder>
+  <Folder Name="/Frontend/">
+    <Project Path="Travel.MVC/Travel.MVC.csproj" />
+  </Folder>
+</Solution>

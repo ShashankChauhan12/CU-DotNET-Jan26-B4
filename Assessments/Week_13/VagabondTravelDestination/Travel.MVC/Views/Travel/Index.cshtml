@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Travel.MVC.Models.Destination>
+
+<h1 class="mb-4"> Travel Destinations</h1>
+
+<div class="row">
+
+    @foreach (var item in Model)
+    {
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-lg rounded-4 h-100 d-flex flex-column p-3">
+
+                <h4>@item.CityName, @item.Country</h4>
+
+                <!-- Fixed height description -->
+                <p style="min-height: 60px;">
+                    @(item.Description ?? "No description available")
+                </p>
+
+                <!-- ⭐ Rating + number -->
+                <div class="mt-auto">
+                    <div>
+                        @for (int i = 1; i <= 5; i++)
+                        {
+                            if (i <= item.Rating)
+                            {
+                                <span style="color: gold; font-size: 20px;">★</span>
+                            }
+                            else
+                            {
+                                <span style="color: lightgray; font-size: 20px;">★</span>
+                            }
+                        }
+
+                        <!-- ✅ Rating number -->
+                        <span style="margin-left:10px; font-weight:bold;">
+                            @item.Rating/5
+                        </span>
+                    </div>
+
+                    <p class="mt-2 mb-0">
+                        <strong>Last Visited:</strong> @item.LastVisited.ToString("dd MMM yyyy")
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    }
+
+</div>
