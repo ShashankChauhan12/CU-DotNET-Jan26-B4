@@ -1,0 +1,21 @@
+﻿@model StudentMVC.Models.StudentViewModel
+
+<h2>Add Student</h2>
+
+<form asp-action="Create">
+    <div>
+        Name: <input asp-for="Name" />
+    </div>
+
+    <div>
+        Age: <input asp-for="Age" />
+    </div>
+
+    <div>
+        Course: <input asp-for="Course" />
+    </div>
+
+    <br />
+
+    <button type="submit">Save</button>
+</form>
