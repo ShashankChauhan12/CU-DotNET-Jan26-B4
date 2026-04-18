@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/Services/">
+    <Project Path="NorthwindCatalog.Services/NorthwindCatalog.Services.csproj" Id="e369be92-608b-456c-abba-531069207ab6" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="NorthwindCatalog.Tests/NorthwindCatalog.Tests.csproj" Id="c001b78e-cdee-4de5-addc-636d5649c3a5" />
+  </Folder>
+  <Folder Name="/Web/">
+    <Project Path="NorthwindCatalog.Web/NorthwindCatalog.Web.csproj" Id="d433c2e6-6976-4362-82e8-fb12a5d5aec4" />
+  </Folder>
+</Solution>
