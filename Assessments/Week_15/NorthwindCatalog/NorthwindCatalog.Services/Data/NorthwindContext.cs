@@ -24,39 +24,14 @@ namespace NorthwindCatalog.Services.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Category>(entity =>
-            {
-                entity.HasKey(e => e.CategoryId);
+            modelBuilder.Entity<Product>()
+                .Property(p => p.UnitPrice)
+                .HasColumnType("decimal(10,2)");
 
-                entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
-                entity.Property(e => e.CategoryName).HasMaxLength(15);
-                entity.Property(e => e.Description).HasColumnType("ntext");
-                entity.Property(e => e.Picture).HasColumnType("image");
-            });
-
-            modelBuilder.Entity<Product>(entity =>
-            {
-                entity.HasKey(e => e.ProductId);
-
-                entity.Property(e => e.ProductId).HasColumnName("ProductID");
-                entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
-                entity.Property(e => e.SupplierId).HasColumnName("SupplierID");
-
-                entity.Property(e => e.ProductName).HasMaxLength(40);
-                entity.Property(e => e.QuantityPerUnit).HasMaxLength(20);
-
-                entity.Property(e => e.UnitPrice)
-                    .HasColumnType("decimal(10,2)");
-
-                entity.Property(e => e.ReorderLevel).HasDefaultValue((short)0);
-                entity.Property(e => e.UnitsInStock).HasDefaultValue((short)0);
-                entity.Property(e => e.UnitsOnOrder).HasDefaultValue((short)0);
-
-                entity.HasOne(d => d.Category)
-                    .WithMany(p => p.Products)
-                    .HasForeignKey(d => d.CategoryId)
-                    .HasConstraintName("FK_Products_Categories");
-            });
+            modelBuilder.Entity<Product>()
+                .HasOne(p => p.Category)
+                .WithMany(c => c.Products)
+                .HasForeignKey(p => p.CategoryId);
 
             OnModelCreatingPartial(modelBuilder);
         }
@@ -64,4 +39,3 @@ namespace NorthwindCatalog.Services.Data
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
-

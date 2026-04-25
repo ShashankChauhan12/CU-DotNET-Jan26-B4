@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Loan.Test/Loan.Test.csproj" Id="422832c3-e693-4a75-bc51-f69faf609455" />
+  <Project Path="LoanAPIUpdate/LoanAPIUpdate.csproj" />
+</Solution>
